@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+}
+:focus,
+:active {
+  outline: none;
+}
+ul {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a,
+a:visited,
+button,
+input,
+textarea,
+::placeholder {
+  font-family: inherit;
+  text-decoration: inherit;
+  color: inherit;
+  opacity: 1; // Firefox
+}
+button,
+input[type="submit"],
+input[type="reset"] {
+  cursor: pointer;
+}
+input::-ms-clear {
+  // remove default cross
+  display: none;
+}
+input[type="number"] {
+  // remove default arrows
+  -moz-appearance: textfield;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

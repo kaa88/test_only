@@ -1,0 +1,60 @@
+// Global elements //
+
+@import "/src/styles/variables.scss";
+
+html {
+  font-size: $font-size-default;
+  @media (max-width: $media-d+px) {
+    font-size: resize-multiplier(16, $media-d, 1.1);
+  }
+  @media (max-width: $media-ds+px) {
+    font-size: 13px;
+  }
+}
+body {
+  font-family: var(--font-main);
+  font-size: inherit;
+  color: var(--color02);
+  background-color: var(--color01);
+}
+#app {
+  position: relative;
+  display: grid; //REQ!
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr auto; //REQ! if footer at the bottom
+  min-height: 100vh; //REQ! if footer at the bottom
+  max-width: $page-max-width + px;
+  margin: 0 auto; //REQ! if max-width
+  padding-top: calc(var(--header-offset) + var(--header-height));
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.2;
+}
+h1 {
+  font-size: 40px;
+  @media (max-width: ($bp-mobile)) {
+    font-size: 28px;
+  }
+}
+h2 {
+  font-size: 32px;
+  @media (max-width: ($bp-mobile)) {
+    font-size: 24px;
+  }
+}
+h3 {
+  font-size: 28px;
+  @media (max-width: ($bp-mobile)) {
+    font-size: 20px;
+  }
+}

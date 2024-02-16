@@ -1,0 +1,13 @@
+// Media breakpoints //
+$media-offset: 3px;
+
+// width breakpoints
+$bp-dt-large: 2560px - $media-offset;
+$bp-dt-medium: 1920px - $media-offset;
+$bp-dt-small: 1440px - $media-offset;
+$bp-tablet: 1280px - $media-offset;
+$bp-mobile: 768px - $media-offset;
+$bp-mobile-small: 390px - $media-offset;
+
+// height breakpoints
+$hbp-mobile: 1024px - $media-offset;
