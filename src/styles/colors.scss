@@ -3,18 +3,11 @@
 body {
   // theme-default
   --color-white: #fff;
-  --color-lightgrey: #e9e9e9;
-  --color-midgrey: #737373;
-  --color-primary: #ff735c;
-  --color-primary-hover: #ffb4a8;
-  --color-background: #f8f9fa;
-  --color-borders: #d2d2d2;
-  --color-text: #212529;
-  --color-danger: #dc3545;
-  --color-success: #198754;
-  --color-link: #0d6efd;
-  --color-link-hover: #1a50df;
-  --color-menu-hover: #e7f1ff;
+  --color-background: #f4f5f9;
+  --color-primary: #42567a;
+  --color-primary-alpha: #42567a77;
+  --color-primary-alpha2: #42567aff; // 33
+  --color-accent: #3877ee;
+  --color-accent2: #5d5fef;
+  --color-accent3: #ef5da8;
 }
-
-// body.theme-dark {}

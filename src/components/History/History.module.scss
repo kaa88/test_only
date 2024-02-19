@@ -1,0 +1,61 @@
+@import "/src/styles/variables.scss";
+
+.wrapper {
+  position: relative;
+  max-width: 1440px;
+  max-height: 1080px;
+  height: 100vh;
+  overflow: hidden;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 0 1px var(--color-primary-alpha2);
+  }
+
+  .title {
+    position: absolute;
+    top: calc(16% - 0px);
+    left: 0;
+    position: relative;
+    z-index: 5;
+  }
+
+  .wheel {
+    position: absolute;
+    top: calc(44.44% - 100vh);
+    left: calc(50% - 100vw);
+    z-index: 9;
+  }
+
+  .periodNav {
+    position: absolute;
+    top: 65%;
+    left: 100px;
+    z-index: 10;
+    user-select: none;
+  }
+  .periodNavInfo {
+    font-size: 14px;
+  }
+  .periodNavButtons {
+    margin-top: 20px;
+    display: inline-flex;
+    & > *:last-child {
+      margin-left: 20px;
+      transform: rotate(180deg);
+    }
+  }
+
+  .slider {
+    position: absolute;
+    top: calc(65% + 144px);
+    left: 0;
+    z-index: 11;
+    width: 100%;
+  }
+}

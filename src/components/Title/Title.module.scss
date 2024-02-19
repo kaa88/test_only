@@ -1,0 +1,31 @@
+@import "/src/styles/variables.scss";
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-accent),
+      var(--color-accent3)
+    );
+  }
+}
+h1 {
+  margin-left: 80px;
+  display: inline-block;
+  width: min-content;
+  font-style: normal;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.2;
+  @media (max-width: ($bp-mobile)) {
+    font-size: 20px;
+  }
+}

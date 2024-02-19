@@ -1,0 +1,142 @@
+@import "/src/styles/variables.scss";
+
+.wrapper {
+  position: relative;
+  width: 200vw;
+  height: 200vh;
+  user-select: none;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    background: var(--color-primary-alpha2);
+  }
+  // horizontal line
+  &:before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+  }
+  // vertical line
+  &:after {
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+  }
+}
+.wheel {
+  position: absolute;
+  top: calc(50% - 265px);
+  left: calc(50% - 265px);
+  z-index: 2;
+  width: 530px;
+  height: 530px;
+  border-radius: 50%;
+  border: solid 1px var(--color-primary-alpha2);
+  transition: transform $timer-animation;
+}
+.wheelSpoke {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+}
+.wheelButton {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: transform $timer-animation;
+
+  position: absolute;
+  top: -28px;
+  left: -28px;
+  &:nth-child(2) {
+    left: auto;
+    right: -28px;
+  }
+  &.active {
+    pointer-events: none;
+  }
+}
+.wheelButtonInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  height: 0;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  border: solid 3px var(--color-primary);
+  transition: all $timer-hover;
+  span {
+    font-size: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all $timer-hover;
+  }
+  .wheelButton:hover &,
+  .wheelButton.active & {
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-background);
+    border-width: 1px;
+    border-color: var(--color-primary-alpha);
+    span {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+.wheelButtonText {
+  position: absolute;
+  top: calc(50% - 10px);
+  left: calc(100% + 20px);
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+  opacity: 0;
+  visibility: hidden;
+  transition: all $timer-hover;
+  span {
+    opacity: 0;
+    visibility: hidden;
+    transition: all $timer-hover;
+    transition-delay: $timer-animation;
+  }
+  .wheelButton.active &,
+  .wheelButton.active & span {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.counters {
+  position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 500px);
+  display: inline-flex;
+  justify-content: space-between;
+  width: 960px;
+  line-height: 200px;
+  letter-spacing: -5px;
+  user-select: none;
+  & > * {
+    font-size: 200px;
+    font-weight: 700;
+    &:first-child {
+      color: var(--color-accent2);
+    }
+    &:last-child {
+      color: var(--color-accent3);
+    }
+  }
+}

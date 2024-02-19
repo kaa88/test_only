@@ -1,16 +1,15 @@
-import { ComponentProps } from "react";
 import classes from "./MainPage.module.scss";
+import rawData from "../../data.json";
+import { IData } from "../../types/types";
+import History from "../../components/History/History";
 
-interface MainPageProps extends ComponentProps<"div"> {}
+const data = (rawData as IData) || [];
+const sortedData = data.map((period) => period.sort((a, b) => a.year - b.year));
 
-const MainPage = function ({
-  className = "",
-  children,
-  ...props
-}: MainPageProps) {
+const MainPage = function () {
   return (
-    <div className={`${className} ${classes.default}`} {...props}>
-      {children}
+    <div className={classes.page}>
+      <History className={classes.history} data={sortedData} />
     </div>
   );
 };
