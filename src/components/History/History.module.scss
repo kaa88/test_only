@@ -20,13 +20,6 @@
     }
   }
 
-  @media (max-width: ($bp-mobile+px)) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: auto;
-  }
-
   .title {
     position: absolute;
     top: 16%;
@@ -34,7 +27,7 @@
     position: relative;
     z-index: 5;
     @media (max-width: ($bp-mobile+px)) {
-      position: static;
+      top: calc(50% - 225px);
     }
   }
 
@@ -44,9 +37,8 @@
     left: calc(50% - 100vw);
     z-index: 9;
     @media (max-width: ($bp-mobile+px)) {
-      position: static;
-      margin-top: 8vh;
-      margin-bottom: 8vh;
+      top: calc(50% - 115px); // +110
+      left: 0;
     }
   }
 
@@ -87,7 +79,7 @@
     z-index: 11;
     width: 100%;
     @media (max-width: ($bp-mobile+px)) {
-      position: static;
+      top: calc(50% - 25px); // +90
     }
   }
 }

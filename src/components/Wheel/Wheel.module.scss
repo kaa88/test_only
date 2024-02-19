@@ -6,7 +6,7 @@
   height: 200vh;
   user-select: none;
   @media (max-width: ($bp-mobile+px)) {
-    width: auto;
+    width: 100%;
     height: auto;
     display: flex;
     justify-content: center;
