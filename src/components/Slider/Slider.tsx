@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, useRef, useEffect, useState } from "react";
-import "./Slider.scss";
+import classes from "./Slider.module.scss";
 import { IActivePeriod, IData } from "../../types/types";
 import Swiper from "swiper";
 import { SwiperContainer } from "swiper/element";
@@ -26,24 +26,26 @@ interface SliderProps extends ComponentPropsWithoutRef<"div"> {
   activePeriod: IActivePeriod;
 }
 
+const mobileBreakpoint = 730;
+
 const Slider = function ({ className = "", data, activePeriod }: SliderProps) {
   const swiperElRef = useRef<SwiperContainer>(null);
 
   const swiperParams = {
-    // freeMode: {
-    //   enabled: true,
-    // },
     slidesPerView: "auto",
-    spaceBetween: 80,
-    // breakpoints: {
-    // 	[mobileBreakpoint]: {
-    // 		slidesPerView: 3,
-    // 		enabled: false
-    // 	},
-    // },
-    // on: {
-    // 	slideChangeTransitionEnd: handleSlideChange
-    // }
+    spaceBetween: 25,
+    slidesOffsetBefore: 20,
+    pagination: {
+      enabled: true,
+      clickable: true,
+    },
+    breakpoints: {
+      [mobileBreakpoint]: {
+        spaceBetween: 80,
+        slidesOffsetBefore: 0,
+      },
+    },
+    injectStyles: [shadowStyles],
   };
 
   const [swiperUpdate, setSwiperUpdate] = useState(false);
@@ -87,7 +89,8 @@ const Slider = function ({ className = "", data, activePeriod }: SliderProps) {
     swiperEl?.swiper.slideNext();
   };
 
-  const [slides, setSlides] = useState(data[activePeriod]);
+  const [periodTitle, setPeriodTitle] = useState(data[activePeriod].title);
+  const [slides, setSlides] = useState(data[activePeriod].items);
 
   // Fading
   const fadeTimeout = ANIMATION_TIME / 2;
@@ -98,31 +101,41 @@ const Slider = function ({ className = "", data, activePeriod }: SliderProps) {
 
     setTimeout(() => {
       setIsFaded(false);
-      setSlides(data[activePeriod]);
+      setPeriodTitle(data[activePeriod].title);
+      setSlides(data[activePeriod].items);
       setSwiperUpdate(true);
     }, fadeTimeout);
   }, [activePeriod]);
   // /Fading
 
   return (
-    <div className={`${className} sliderWrapper ${isFaded ? "faded" : ""}`}>
+    <div
+      className={`${className} ${classes.wrapper} ${
+        isFaded ? classes.faded : ""
+      }`}
+    >
+      <div className={classes.mobileHeader}>
+        <div className={classes.mobileHeaderTitle}>{periodTitle}</div>
+        <div className={classes.mobileHeaderDivider}></div>
+      </div>
+
       <ArrowButton
-        className={`sliderPrevBtn ${
-          isSlideBeginning ? "sliderBtnInactive" : ""
+        className={`${classes.prevBtn} ${
+          isSlideBeginning ? classes.inactive : ""
         }`}
         variant="slider"
         onClick={slidePrev}
       />
-      <swiper-container ref={swiperElRef}>
+      <swiper-container ref={swiperElRef} init="false">
         {slides.map((slide, index) => (
           <swiper-slide key={index}>
-            <p className="slideTitle">{slide.year}</p>
-            <p className="slideText">{slide.descr}</p>
+            <p className={classes.slideTitle}>{slide.year}</p>
+            <p className={classes.slideText}>{slide.descr}</p>
           </swiper-slide>
         ))}
       </swiper-container>
       <ArrowButton
-        className={`sliderNextBtn ${isSlideEnd ? "sliderBtnInactive" : ""}`}
+        className={`${classes.nextBtn} ${isSlideEnd ? classes.inactive : ""}`}
         variant="slider"
         onClick={slideNext}
       />
@@ -130,3 +143,14 @@ const Slider = function ({ className = "", data, activePeriod }: SliderProps) {
   );
 };
 export default Slider;
+
+const shadowStyles = `
+  .swiper-pagination {
+    position: fixed;
+    top: auto !important;
+    bottom: 32px !important;
+    @media (min-width: ${mobileBreakpoint + 1}px) {
+      display: none;
+    }
+  }
+`;

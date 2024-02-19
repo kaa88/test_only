@@ -2,8 +2,8 @@
 
 .wrapper {
   position: relative;
-  max-width: 1440px;
-  max-height: 1080px;
+  max-width: em(1440);
+  max-height: em(1080);
   height: 100vh;
   overflow: hidden;
   &:before {
@@ -14,15 +14,28 @@
     display: inline-block;
     width: 100%;
     height: 100%;
-    box-shadow: inset 0 0 0 1px var(--color-primary-alpha2);
+    box-shadow: inset 0 0 0 em(1) var(--color-primary-alpha2);
+    @media (max-width: ($bp-mobile+px)) {
+      display: none;
+    }
+  }
+
+  @media (max-width: ($bp-mobile+px)) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: auto;
   }
 
   .title {
     position: absolute;
-    top: calc(16% - 0px);
+    top: 16%;
     left: 0;
     position: relative;
     z-index: 5;
+    @media (max-width: ($bp-mobile+px)) {
+      position: static;
+    }
   }
 
   .wheel {
@@ -30,32 +43,51 @@
     top: calc(44.44% - 100vh);
     left: calc(50% - 100vw);
     z-index: 9;
+    @media (max-width: ($bp-mobile+px)) {
+      position: static;
+      margin-top: 8vh;
+      margin-bottom: 8vh;
+    }
   }
 
   .periodNav {
     position: absolute;
     top: 65%;
-    left: 100px;
+    left: em(100);
     z-index: 10;
     user-select: none;
+    @media (max-width: ($bp-mobile+px)) {
+      top: auto;
+      bottom: em(13);
+      left: em(20);
+    }
   }
   .periodNavInfo {
-    font-size: 14px;
+    font-size: em(14);
   }
   .periodNavButtons {
-    margin-top: 20px;
+    margin-top: em(20);
     display: inline-flex;
     & > *:last-child {
-      margin-left: 20px;
+      margin-left: em(20);
       transform: rotate(180deg);
+    }
+    @media (max-width: ($bp-mobile+px)) {
+      margin-top: em(10);
+      & > *:last-child {
+        margin-left: em(8);
+      }
     }
   }
 
   .slider {
     position: absolute;
-    top: calc(65% + 144px);
+    top: calc(65% + em(144));
     left: 0;
     z-index: 11;
     width: 100%;
+    @media (max-width: ($bp-mobile+px)) {
+      position: static;
+    }
   }
 }

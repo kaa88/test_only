@@ -2,31 +2,21 @@
 
 .default,
 .slider {
+  font-size: 1em;
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: em(50);
+  height: em(50);
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--color-background);
+  border: solid em(1) var(--color-primary-alpha);
   border-radius: 50%;
-  transition: all $timer-hover;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    border: solid 1px var(--color-primary-alpha);
-    border-radius: 50%;
-    transition: all $timer-hover;
-  }
+  transition: background-color $timer-hover, opacity $timer-hover;
   svg {
-    margin-right: 3px;
-    width: 13px;
-    height: 13px;
+    margin-right: em(3);
+    width: em(13);
+    height: em(13);
     fill: transparent;
     stroke: var(--color-primary);
     transition: all $timer-hover;
@@ -35,29 +25,43 @@
     background-color: var(--color-white);
   }
   &:disabled {
+    opacity: 0.5;
     cursor: default;
-    &:before,
-    svg {
-      opacity: 0.5;
-    }
     &:hover {
       background-color: var(--color-background);
     }
   }
+  @media (max-width: ($bp-mobile+px)) {
+    width: em(25);
+    height: em(25);
+    svg {
+      margin-right: em(1);
+      width: em(7);
+      height: em(7);
+    }
+  }
 }
 .slider {
-  width: 40px;
-  height: 40px;
+  width: em(40);
+  height: em(40);
   background-color: var(--color-white);
+  border: none;
   &:before {
-    border: none;
-    box-shadow: 0 0 15px 0 var(--color-accent);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 em(15) 0 var(--color-accent);
     opacity: 0.2;
   }
   svg {
-    margin-right: 2px;
-    width: 11px;
-    height: 11px;
+    margin-right: em(2);
+    width: em(11);
+    height: em(11);
     stroke: var(--color-accent);
   }
   &:disabled {

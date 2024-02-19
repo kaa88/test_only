@@ -5,38 +5,51 @@
   width: 200vw;
   height: 200vh;
   user-select: none;
+  @media (max-width: ($bp-mobile+px)) {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   &:before,
   &:after {
     content: "";
     position: absolute;
     display: inline-block;
     background: var(--color-primary-alpha2);
+    @media (max-width: ($bp-mobile+px)) {
+      display: none;
+    }
   }
   // horizontal line
   &:before {
     top: 50%;
     left: 0;
     width: 100%;
-    height: 1px;
+    height: em(1);
   }
   // vertical line
   &:after {
     top: 0;
     left: 50%;
-    width: 1px;
+    width: em(1);
     height: 100%;
   }
 }
 .wheel {
   position: absolute;
-  top: calc(50% - 265px);
-  left: calc(50% - 265px);
+  top: calc(50% - em(265));
+  left: calc(50% - em(265));
   z-index: 2;
-  width: 530px;
-  height: 530px;
+  width: em(530);
+  height: em(530);
   border-radius: 50%;
-  border: solid 1px var(--color-primary-alpha2);
+  border: solid em(1) var(--color-primary-alpha2);
   transition: transform $timer-animation;
+  @media (max-width: ($bp-mobile+px)) {
+    display: none;
+  }
 }
 .wheelSpoke {
   position: absolute;
@@ -46,9 +59,10 @@
   height: 0;
 }
 .wheelButton {
+  font-size: 1em;
   position: relative;
-  width: 56px;
-  height: 56px;
+  width: em(56);
+  height: em(56);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,11 +71,11 @@
   transition: transform $timer-animation;
 
   position: absolute;
-  top: -28px;
-  left: -28px;
+  top: em(-28);
+  left: em(-28);
   &:nth-child(2) {
     left: auto;
-    right: -28px;
+    right: em(-28);
   }
   &.active {
     pointer-events: none;
@@ -75,20 +89,20 @@
   height: 0;
   background-color: var(--color-primary);
   border-radius: 50%;
-  border: solid 3px var(--color-primary);
+  border: solid em(3) var(--color-primary);
   transition: all $timer-hover;
   span {
-    font-size: 20px;
+    font-size: em(20);
     opacity: 0;
     visibility: hidden;
     transition: all $timer-hover;
   }
   .wheelButton:hover &,
   .wheelButton.active & {
-    width: 56px;
-    height: 56px;
+    width: em(56);
+    height: em(56);
     background-color: var(--color-background);
-    border-width: 1px;
+    border-width: em(1);
     border-color: var(--color-primary-alpha);
     span {
       opacity: 1;
@@ -98,10 +112,10 @@
 }
 .wheelButtonText {
   position: absolute;
-  top: calc(50% - 10px);
-  left: calc(100% + 20px);
-  font-size: 20px;
-  line-height: 20px;
+  top: calc(50% - em(10));
+  left: calc(100% + em(20));
+  font-size: em(20);
+  line-height: em(20);
   font-weight: 700;
   opacity: 0;
   visibility: hidden;
@@ -109,7 +123,7 @@
   span {
     opacity: 0;
     visibility: hidden;
-    transition: all $timer-hover;
+    transition: opacity $timer-hover, visibility $timer-hover;
     transition-delay: $timer-animation;
   }
   .wheelButton.active &,
@@ -121,22 +135,31 @@
 
 .counters {
   position: absolute;
-  top: calc(50% - 100px);
-  left: calc(50% - 500px);
+  top: calc(50% - em(100));
+  left: calc(50% - em(500));
   display: inline-flex;
   justify-content: space-between;
-  width: 960px;
-  line-height: 200px;
-  letter-spacing: -5px;
+  width: em(960);
+  line-height: em(200);
+  letter-spacing: em(-5);
   user-select: none;
   & > * {
-    font-size: 200px;
+    font-size: em(200);
     font-weight: 700;
     &:first-child {
       color: var(--color-accent2);
     }
     &:last-child {
       color: var(--color-accent3);
+    }
+  }
+  @media (max-width: ($bp-mobile+px)) {
+    position: static;
+    width: em(273);
+    line-height: em(56);
+    letter-spacing: em(-2);
+    & > * {
+      font-size: em(56);
     }
   }
 }

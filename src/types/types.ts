@@ -3,7 +3,10 @@ export interface IEvent {
   descr?: string;
 }
 
-export type IPeriod = IEvent[];
+export interface IPeriod {
+  title: string;
+  items: IEvent[];
+}
 
 export type IData = IPeriod[];
 

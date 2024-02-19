@@ -20,3 +20,8 @@
 @function rem($px, $context: 16) {
   @return math.div($px, $context) * 1rem;
 }
+@function resize-multiplier($size, $media, $multiplier: 1, $base: 100vw) {
+  @return calc(
+    $size * $multiplier / $media * $base + $size * (1 - $multiplier) * 1px
+  );
+}

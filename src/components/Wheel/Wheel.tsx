@@ -3,15 +3,6 @@ import classes from "./Wheel.module.scss";
 import { IActivePeriod, IData, PeriodChangeHandler } from "../../types/types";
 import Counter from "../Counter/Counter";
 
-const periodNames = [
-  "Музыка",
-  "Кино",
-  "Литература",
-  "Искусство",
-  "Технологии",
-  "Наука",
-];
-
 interface WheelProps extends ComponentPropsWithoutRef<"div"> {
   data: IData;
   activePeriod: IActivePeriod;
@@ -67,7 +58,10 @@ const Wheel = function ({
 
   // Counts
   const period = data[activePeriod];
-  const counts = [period[0].year, period[period.length - 1].year];
+  const counts = [
+    period.items[0].year,
+    period.items[period.items.length - 1].year,
+  ];
   // /Counts
 
   return (
@@ -96,7 +90,7 @@ const Wheel = function ({
                   <span>{index + 1}</span>
                 </div>
                 <div className={classes.wheelButtonText}>
-                  <span>{periodNames[index]}</span>
+                  <span>{data[index].title}</span>
                 </div>
               </button>
             </div>

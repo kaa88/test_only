@@ -8,24 +8,28 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
+    width: em(5);
     height: 100%;
     background-image: linear-gradient(
       to bottom,
       var(--color-accent),
       var(--color-accent3)
     );
+    @media (max-width: ($bp-mobile+px)) {
+      display: none;
+    }
   }
 }
 h1 {
-  margin-left: 80px;
+  margin-left: em(80, 56);
   display: inline-block;
   width: min-content;
   font-style: normal;
-  font-size: 56px;
+  font-size: em(56);
   font-weight: 700;
   line-height: 1.2;
-  @media (max-width: ($bp-mobile)) {
-    font-size: 20px;
+  @media (max-width: ($bp-mobile+px)) {
+    margin-left: em(20, 20);
+    font-size: em(20);
   }
 }

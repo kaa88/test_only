@@ -4,12 +4,12 @@
 
 html {
   font-size: 16px;
-  // @media (max-width: ($media-d+px)) {
-  //   font-size: resize-multiplier(16, $media-d, 1.1);
-  // }
-  // @media (max-width: ($media-ds+px)) {
-  //   font-size: 13px;
-  // }
+  @media (max-height: (1080px)) {
+    font-size: resize-multiplier(16, 1080, 1, 100vh);
+  }
+  @media (max-width: ($bp-mobile+px)) {
+    font-size: 16px;
+  }
 }
 body {
   font-family: var(--font-main);
